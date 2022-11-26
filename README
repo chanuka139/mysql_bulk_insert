@@ -1,0 +1,31 @@
+This script can be used to insert a bulk data set to a single MySQL database table for testing perposes. 
+
+Following are the conditions where this was verified.
+
+OS: CentOS 8
+Python: Python3 (3.6.8)
+MySQL: 8.0.26
+
+Install MySQL and use below comands to create the test database and table.
+
+create database INS_TEST;
+use INS_TEST;
+CREATE TABLE test (id int not null AUTO_INCREMENT, lastName varchar(255), firstName varchar(255), address varchar(255), city varchar(255), PRIMARY KEY (id));
+
+Open the insert_to_mysql.py script and update the below configurations as required.
+
+MYSQL_HOST='localhost' #Hostname of the IP to access the MySQL instance. This script was written assuming that the default MySQL port was used. 
+DATABASE_NAME='INS_TEST' #Database name
+USERNAME='user' #Username for the MySQL access
+PASS='*******' #Password for MySQL access
+TABLE_NAME='test' #Table name
+LOG_FILE_NAME='mysql_bulk_insert.log' #Name of the log file of this script.
+
+NUM_OF_RECS=10000 #Number of records to be inserted to the table
+
+Finally execute the script to insert the records to the table. 
+
+python3 insert_to_mysql.py
+
+The information regarding the script will be written to the log file configured in LOG_FILE_NAME parameter.  
+
